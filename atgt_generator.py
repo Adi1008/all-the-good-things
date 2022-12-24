@@ -3,18 +3,24 @@ import subprocess
 import pandas as pd
 import re
 
-# Clean up input and allow for bolding, italics, etc.
-# Input: raw form of message
-# Output: cleaned-up message with LaTeX commands for bold, italics, etc.
+# Replace LaTeX-sensitive characters with their LaTeX counterparts and allow for bolding, italicizing, etc.
 def clean_input(message):
     # Get rid of leading/trailing whitespaces
     message = message.strip()
     # Adjust the number of newlines so that the rendered PDF looks like how it's supposed to
     message = message.replace("\n", "\n\n")
+    # Add escape characters for percent signs (%)
+    message = message.replace("%", "\\%")
     # Add LaTeX command for bold
     message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
     # Add LaTeX command for italics
     message = re.sub(r'\*(.+?)\*', r'\\textit{\1}', message)
+    # Replace double quoted substrings with ``''
+    match = re.search("\"[^\"]*\"", message)
+    while match:
+        repl = "``{}''".format(match.group(0)[1:-1])
+        message = message[:match.start()] + repl + message[match.end():]
+        match = re.search("\"[^\"]*\"", message)
 
     return message
 
