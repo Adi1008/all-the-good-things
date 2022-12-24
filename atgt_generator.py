@@ -3,7 +3,23 @@ import subprocess
 import pandas as pd
 import re
 
-df = pd.read_csv("test_responses_5.csv")
+# Clean up input and allow for bolding, italics, etc.
+# Input: raw form of message
+# Output: cleaned-up message with LaTeX commands for bold, italics, etc.
+def clean_input(message):
+    # Get rid of leading/trailing whitespaces
+    message = message.strip()
+    # Adjust the number of newlines so that the rendered PDF looks like how it's supposed to
+    message = message.replace("\n", "\n\n")
+    # Add LaTeX command for bold
+    message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
+    # Add LaTeX command for italics
+    message = re.sub(r'\*(.+?)\*', r'\\textit{\1}', message)
+
+    return message
+
+# Load responses
+df = pd.read_csv("test_responses.csv")
 
 # Get names of all recipients
 recipient_names = df.iloc[:,2].unique()
@@ -25,18 +41,13 @@ for name in recipient_names:
     f.write("\n"+r"\vspace{1cm}")
 
     # Iterate through all the messages for this person and add them to the .tex file
-    #f.write("\n\n")
     f.write("\n\n"+r"\begin{center}")
     messages = relevant_rows["Message:"]
     for index, message in messages.items():
-        message = message.strip()
-        message = message.replace("\n", "\n\n")
-        #message = message.replace(r'"', "\n\n")
-        message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
-        f.write("\t\n"+message)
+        message = clean_input(message)
+        f.write("\n"+message)
         f.write(" -- " + r"\textit{" + str(relevant_rows.at[index, "From:"]) + r"}" + "\n")
-        f.write("\t\n"+r"\vspace{1cm}")
-    #f.write("\n")
+        f.write("\n"+r"\vspace{1cm}"+"\n")
     f.write("\n"+r"\end{center}")
 
     # End .tex file
