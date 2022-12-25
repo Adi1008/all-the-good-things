@@ -22,4 +22,4 @@ I think it'd be really cool to do it for our cohort this year. This repository c
   - You can use any math symbols you want, as long as they come from the `amsmath`, `amssymb`, or `braket` packages.
 
 ## Example input and output
-Work in progress :)
+See the `example` folder in this repository for an example input .csv file and its corresponding output .tex and .pdf files.
