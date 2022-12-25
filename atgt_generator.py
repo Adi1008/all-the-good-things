@@ -17,16 +17,8 @@ def latexify(message):
     message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
     message = re.sub(r'\*(.+?)\*', r'\\textit{\1}', message)
     # Replace double-quoted substrings with ``'' and single-quoted substrings with `'
-    match = re.search("\"[^\"]*\"", message)
-    while match:
-        repl = "``{}''".format(match.group(0)[1:-1])
-        message = message[:match.start()] + repl + message[match.end():]
-        match = re.search("\"[^\"]*\"", message)
-    match = re.search("\\s'[^']+'\\s", message)
-    while match:
-        repl = "`{}'".format(match.group(0)[2:-2])
-        message = message[:match.start()+1] + repl + message[match.end()-1:]
-        match = re.search("\\s'[^']+'\\s", message)
+    message = re.sub(r'"(.*?)"', r"``\1''", message)
+    message = re.sub(r"(?<=\s)'(?!')(.*?)'", r"`\1'", (' '+message))[1:]
     
     return message
 
@@ -58,7 +50,7 @@ for name in recipient_names:
     for index, message in messages.items():
         message = latexify(message)
         f.write("\n"+message)
-        f.write(" -- " + r"\textit{" + str(relevant_rows.at[index, "From:"]) + r"}" + "\n")
+        f.write(" --~" + r"\textit{" + str(relevant_rows.at[index, "From:"]) + r"}" + "\n")
         f.write("\n"+r"\vspace{1cm}"+"\n")
     f.write("\n"+r"\end{center}")
 
