@@ -68,5 +68,5 @@ for name in recipient_names:
     # Close .tex file
     f.close()
 
-    # Run pdflatex to create PDf file from .tex file
+    # Run pdflatex to create the .pdf file from the .tex file
     subprocess.call(["pdflatex", filename])

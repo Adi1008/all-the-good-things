@@ -1,6 +1,8 @@
 # all-the-good-things
 
-In my high school orchestra program, All The Good Things was an event where people write notes to each other. I think it'd be really cool to do it for our cohort this year. This repository contains code used to generate the .tex and .pdf files for everyone's notes from a .csv of Google Form responses.
+In my high school orchestra program, All The Good Things was an event where people wrote kind notes to each other. It was one of the highlights of the year, and I still have all the messages people wrote to me.
+
+I think it'd be really cool to do it for our cohort this year. This repository contains the code used to generate the .tex and .pdf files for everyone's notes from a .csv of Google Form responses.
 
 ## Logistics:
 
