@@ -4,24 +4,30 @@ import pandas as pd
 import re
 
 # Replace LaTeX-sensitive characters with their LaTeX counterparts and allow for bolding, italicizing, etc.
-def clean_input(message):
+# Returns modified line
+def latexify(message):
     # Get rid of leading/trailing whitespaces
     message = message.strip()
     # Adjust the number of newlines so that the rendered PDF looks like how it's supposed to
     message = message.replace("\n", "\n\n")
-    # Add escape characters for percent signs (%)
+    # Add escape characters for percent signs (%) and pound signs (#)
     message = message.replace("%", "\\%")
-    # Add LaTeX command for bold
+    message = message.replace("#", "\\#")
+    # Add LaTeX commands for bold and italics
     message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
-    # Add LaTeX command for italics
     message = re.sub(r'\*(.+?)\*', r'\\textit{\1}', message)
-    # Replace double quoted substrings with ``''
+    # Replace double-quoted substrings with ``'' and single-quoted substrings with `'
     match = re.search("\"[^\"]*\"", message)
     while match:
         repl = "``{}''".format(match.group(0)[1:-1])
         message = message[:match.start()] + repl + message[match.end():]
         match = re.search("\"[^\"]*\"", message)
-
+    match = re.search("\\s'[^']+'\\s", message)
+    while match:
+        repl = "`{}'".format(match.group(0)[2:-2])
+        message = message[:match.start()+1] + repl + message[match.end()-1:]
+        match = re.search("\\s'[^']+'\\s", message)
+    
     return message
 
 # Load responses
@@ -33,7 +39,7 @@ recipient_names = df.iloc[:,2].unique()
 # Generate the .tex file and PDF for each recipient
 for name in recipient_names:
     # Select all the rows with messages to this person
-    relevant_rows = df[df.iloc[:,2] == name]
+    relevant_rows = df.loc[df['To:'] == name]
 
     # Create .tex file for this person
     filename = name.split()[0] + ".tex"
@@ -50,7 +56,7 @@ for name in recipient_names:
     f.write("\n\n"+r"\begin{center}")
     messages = relevant_rows["Message:"]
     for index, message in messages.items():
-        message = clean_input(message)
+        message = latexify(message)
         f.write("\n"+message)
         f.write(" -- " + r"\textit{" + str(relevant_rows.at[index, "From:"]) + r"}" + "\n")
         f.write("\n"+r"\vspace{1cm}"+"\n")
