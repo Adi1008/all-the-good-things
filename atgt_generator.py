@@ -23,10 +23,10 @@ def latexify(message):
     return message
 
 # Load responses
-df = pd.read_csv("test_responses.csv")
+df = pd.read_csv("example_responses.csv")
 
 # Get names of all recipients
-recipient_names = df.iloc[:,2].unique()
+recipient_names = df.loc[:,'To:']
 
 # Generate the .tex file and PDF for each recipient
 for name in recipient_names:
@@ -46,11 +46,11 @@ for name in recipient_names:
 
     # Iterate through all the messages for this person and add them to the .tex file
     f.write("\n\n"+r"\begin{center}")
-    messages = relevant_rows["Message:"]
+    messages = relevant_rows['Message:']
     for index, message in messages.items():
         message = latexify(message)
         f.write("\n"+message)
-        f.write(" --~" + r"\textit{" + str(relevant_rows.at[index, "From:"]) + r"}" + "\n")
+        f.write(" --~" + r"\textit{" + str(relevant_rows.at[index, 'From:']) + r"}" + "\n")
         f.write("\n"+r"\vspace{1cm}"+"\n")
     f.write("\n"+r"\end{center}")
 
