@@ -24,7 +24,7 @@ For this event, you are invited to reflect on the people in this cohort who have
 - Typing quotation marks (`'` or `"`), percent signs (`%`), and pound signs (`#`) can be done normally, even though they are special characters in LaTeX.
 - If you want to use an underscore outside of math mode (see below), you need to include a backslash before it
   - For example, typing `i\_like\_underscores` would appear in the final PDF as "i_like_underscores".
-- After Eric's class, I think I've had enough math for a lifetime. If you want to, however, you can add math to your message using standard LaTeX. 
+- After Eric's class, I think I've had enough math for a lifetime. If you want to, however, you can add math to your message using standard LaTeX.
   - For in-line math, put your math between one dollar sign on either side (`$a^2 + b^2 = c^2$`).
   - If you want your math on its own line, then use two dollar signs on each side (`$$a^2 + b^2 = c^2$$`).
   - You can use any math symbols you want, as long as they come from the `amsmath`, `amssymb`, or `braket` packages. If you want to add another package, let me know or create a pull request.
