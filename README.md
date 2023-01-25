@@ -2,7 +2,7 @@
 
 Now that we're deeper into our rotations, taking different classes from each other, and generally seeing each other less (:cry:) I thought it'd be nice to do something to help us stay connected.
 
-In my high school orchestra program, All The Good Things was an event where people wrote messages to each other. It was one of the highlights of the year, and I still have all the messages wrote to me, even after all these years. After getting positive feedback about the idea from some people in the cohort, I adapted it for us.
+In my high school orchestra program, All The Good Things was an event where people wrote messages to each other. It was one of the highlights of the year, and I still have all the messages people wrote to me, even after all these years. After getting positive feedback about the idea from some people in the cohort, I adapted it for us.
 
 For this event, you are invited to reflect on the people in this cohort who have impacted your life and write them a message to let them know. Your message can be whatever length, tone, or style you want. You also don't have to write messages for everyone.
 
