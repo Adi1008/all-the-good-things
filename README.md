@@ -1,19 +1,21 @@
 # all-the-good-things
 
-In my high school orchestra program, All The Good Things was an event where people wrote kind messages to each other. It was one of the highlights of the year, and I still have all the messages people wrote to me. I think it'd be really cool to do it for our cohort, which is why I created this repository.
+Now that we're deeper into our rotations, taking different classes from each other, and generally seeing each other less (:cry:) I thought it'd be nice to do something to help us stay connected.
 
-For this event, you are invited to reflect on the people in this cohort who have impacted your life and write them a message to let them know. Your message can be whatever length, tone, or style you want; just make sure to be kind and respectful overall.
+In my high school orchestra program, All The Good Things was an event where people wrote messages to each other. It was one of the highlights of the year, and I still have all the messages wrote to me, even after all these years. After getting positive feedback about the idea from some people in the cohort, I adapted it for us.
 
-**All members of the "Stanford ChemEs '27" Slack workspace are welcome to participate, including coterm/masters/SCPD students and PhD students in other departments.**
+For this event, you are invited to reflect on the people in this cohort who have impacted your life and write them a message to let them know. Your message can be whatever length, tone, or style you want. You also don't have to write messages for everyone.
+
+All members of the "Stanford ChemEs '27" Slack workspace are welcome to participate, including coterm/masters/SCPD students and PhD students in other departments.
 
 ## Instructions
 
-- Messages are due by **Tuesday, February 7, 2023**.
+- Messages are tentatively due by **Tuesday, February 7, 2023** so they can be delivered on Valentine's Day.
 - Write messages to your friends through [this form](https://tinyurl.com/atgt2023).
   - In the `From:` field, write your name, or write “Anonymous” if you would prefer to stay anonymous.
   - In the `To:` field, select the name of the person you are writing your message to.
-  - In the `Message:` field, write your message using the formatting guidelines in the next section.
-  - Submit the form.
+  - In the `Message:` field, write your message using the formatting guidelines in the next section. Don't sign your name at the end of the message; the code will take care of that.
+  - Submit the form once per message.
   - Repeat as many times as you'd like!
 
 ## Formatting
