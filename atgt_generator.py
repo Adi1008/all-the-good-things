@@ -10,9 +10,11 @@ def latexify(message):
     message = message.strip()
     # Adjust the number of newlines so that the rendered PDF looks like how it's supposed to
     message = message.replace("\n", "\n\n")
-    # Add escape characters for percent signs (%) and pound signs (#)
+    # Add escape characters/modifications for percent signs (%), pound signs (#), ampersands (&), and less than signs (<)
     message = message.replace("%", "\\%")
     message = message.replace("#", "\\#")
+    message = message.replace("&", "\\&")
+    message = message.replace("<", "$<$")
     # Add LaTeX commands for bold and italics
     message = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', message)
     message = re.sub(r'\*(.+?)\*', r'\\textit{\1}', message)
@@ -22,8 +24,8 @@ def latexify(message):
     
     return message
 
-# Load responses
-df = pd.read_csv("example_responses.csv")
+# Load responses (make sure the filename is correct before you run!)
+df = pd.read_csv("responses_final_v2.csv")
 
 # Get names of all recipients
 recipient_names = df.loc[:,'To:']
@@ -50,7 +52,7 @@ for name in recipient_names:
     for index, message in messages.items():
         message = latexify(message)
         f.write("\n"+message)
-        f.write(" --~" + r"\textit{" + str(relevant_rows.at[index, 'From:']) + r"}" + "\n")
+        f.write(" --~" + r"\textit{" + latexify(str(relevant_rows.at[index, 'From:'])) + r"}" + "\n")
         f.write("\n"+r"\vspace{1cm}"+"\n")
     f.write("\n"+r"\end{center}")
 
